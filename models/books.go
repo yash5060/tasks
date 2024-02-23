@@ -1,15 +1,21 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
-type Books struct {
-	ID        uint    `gorm:"primary key;autoIncrement" json:"id"`
-	Author    *string `json:"author"`
-	Title     *string `json:"title"`
-	Publisher *string `json:"publisher"`
+type Tasks struct {
+	ID uint `gorm:"primary key;autoIncrement" json:"id"`
+
+	Title *string `json:"title"`
+
+	Description *string `json:"description"`
+	Due_date    *string `json:"date"`
+	// Age    *uint   `json:"age"`
+	Status *string `json:"status"`
 }
 
-func MigrateBooks(db *gorm.DB) error {
-	err := db.AutoMigrate(&Books{})
+func MigrateTask(db *gorm.DB) error {
+	err := db.AutoMigrate(&Tasks{})
 	return err
 }
